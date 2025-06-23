@@ -92,6 +92,9 @@ impl UserInput {
             .port_u16()
             .unwrap_or_else(|| scheme.default_port());
         let host_header = HeaderValue::from_str(&host)?;
+        let path_and_query_uri = Uri::builder()
+            .path_and_query(uri.path_and_query().map(|p| p.as_str()).unwrap_or("/"))
+            .build()?;
 
         // Prefer ipv4.
         let addr_iter = (host.as_str(), port).to_socket_addrs()?;
@@ -109,7 +112,7 @@ impl UserInput {
             scheme,
             host,
             host_header,
-            uri,
+            uri: path_and_query_uri,
             method,
             headers,
             body,

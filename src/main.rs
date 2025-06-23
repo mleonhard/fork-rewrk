@@ -184,7 +184,7 @@ fn parse_header(value: &str) -> Result<(HeaderName, HeaderValue)> {
 /// Contains Clap's app setup.
 fn parse_args() -> ArgMatches<'static> {
     App::new("ReWrk")
-        .version("0.3.1")
+        .version("0.3.3")
         .author("Harrison Burt <hburt2003@gmail.com>")
         .about("Benchmark HTTP/1 and HTTP/2 frameworks without pipelining bias.")
         .arg(
